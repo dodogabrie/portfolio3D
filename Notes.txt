@@ -1,0 +1,15 @@
+Create the project using the tool vite:
+-> npm create vite@latest ./ -- --template react
+-> Install tailwind css: an utility-first CSS framework (packed with classes) https://tailwindcss.com/
+   The utility-first approach encourages developers to think in terms of utility classes 
+   for directly styling elements rather than writing custom CSS selectors
+-> Install packages for the project using the flag --legacy-peer-deps (perchè alcuni packages funzionano solo con il vecchio react)
+    - react-three: a react base three.js library
+    - maath: pack. for maths and geometry
+    - react-tilt: Animations
+    - react-vertical-timeline-component: for the User Experience
+    - emailjs/browser: for handling email forms
+    - fremer-motion: unkown yet
+    - react-router-dom: for "routing".
+
+1h07
