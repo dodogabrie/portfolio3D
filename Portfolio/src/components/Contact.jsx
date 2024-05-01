@@ -9,6 +9,8 @@ import { SectionWrapper } from '../hoc';
 import { slideIn } from '../utils/motion';
 
 
+
+
 const Contact = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
@@ -18,9 +20,40 @@ const Contact = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {}
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({...form, [name]: value })
+  }
 
-  const handleSubmit = (e) => {}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    emailjs.send(
+      'service_20pwb5g', 
+      'template_pd8qcb9',
+      {
+        from_name: form.name,
+        to_name: 'Edoardo',
+        from_email: form.email,
+        to_email: 'dodogabrie@gmail.com',
+        message: form.message,
+      },
+      'PzTK4-BUqycSlAIdN'
+  ).then(() => {
+    setLoading(false);
+    alert('Thank you! I will get back to you as soon as possible.');
+    setForm({
+      name: '',
+      email: '',
+      message: '',
+    });
+  }, (error) => {
+    setLoading(false);
+    console.log(error);
+    alert('Oops! Something went wrong. Please try again later.');
+  }
+  )}
+
   return (
     <div className='xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden'>
       <motion.div
@@ -29,8 +62,8 @@ const Contact = () => {
       >
         <p className={styles.sectionSubText}>
           Get in touch
-          <h3 className={styles.sectionHeadText}>Contact.</h3>
         </p>
+        <h3 className={styles.sectionHeadText}>Contact.</h3>
         <form 
           ref={formRef}
           onSubmit={handleSubmit}
